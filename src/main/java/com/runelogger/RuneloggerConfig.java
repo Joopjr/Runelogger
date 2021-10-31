@@ -41,7 +41,7 @@ public interface RuneloggerConfig extends Config
             position = 4,
             keyName = "skillingBosses",
             name = "Skilling Bosses",
-            description = "Share defeating skilling bosses (currently only Wintertodt)."
+            description = "Share defeating skilling bosses."
     )
     default boolean skillingBosses() {
         return true;
