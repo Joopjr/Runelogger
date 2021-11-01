@@ -3,7 +3,6 @@ Runelogger is a plugin that collects data from your RuneScape journey and publis
 
 # Data
 We'll always collect the following data and send this to our server. These data is presented on your character page on Runelogger.com.
-* Username (This might be your E-mail address)
 * Character name
 * Character type (Normal/Iron man/Group Ironman)
 * Membership days
