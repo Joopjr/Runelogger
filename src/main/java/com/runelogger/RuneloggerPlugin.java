@@ -99,7 +99,7 @@ public class RuneloggerPlugin extends Plugin
 			Player player = client.getLocalPlayer();
 
 			//SEND THE CHARACTER INFO TO THE API
-			characterInfoSend = apiCommunication.sendCharacterInfo(player);
+			characterInfoSend = apiCommunication.sendCharacterInfo();
 		}
 
 		//SKILLING BOSSES ARE ENABLED

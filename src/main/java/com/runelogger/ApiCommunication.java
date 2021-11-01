@@ -7,7 +7,7 @@ import okhttp3.*;
 import java.io.IOException;
 
 import net.runelite.api.Client;
-import net.runelite.api.Player;
+import net.runelite.api.Skill;
 
 import javax.inject.Inject;
 
@@ -53,6 +53,9 @@ public class ApiCommunication
 
         //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
         sendToApi(file, formBody);
+
+        //SEND LEVEL INFO
+        sendLevelInfo();
     }
 
     //SEND THE CHARACTER INFO TO THE API
@@ -157,12 +160,12 @@ public class ApiCommunication
     }
 
     //SEND THE CHARACTER INFO TO THE API
-    public boolean sendCharacterInfo(Player player)
+    public boolean sendCharacterInfo()
     {
         //FORM PARAMETERS
         RequestBody formBody = new FormBody.Builder()
                 .add("username", client.getUsername())
-                .add("characterName", player.getName())
+                .add("characterName", client.getLocalPlayer().getName())
                 .add("characterType", client.getAccountType().name())
                 .add("memberDays", ""+client.getVar(VarPlayer.MEMBERSHIP_DAYS))
                 .build();
@@ -173,7 +176,50 @@ public class ApiCommunication
         //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
         sendToApi(file, formBody);
 
+        //SEND LEVEL INFO
+        sendLevelInfo();
+
         return true;
+    }
+
+    //SEND THE CHARACTER LEVEL INFO TO THE API
+    private void sendLevelInfo()
+    {
+        //FORM PARAMETERS
+        RequestBody formBody = new FormBody.Builder()
+                .add("username", client.getUsername())
+                .add("combatLevel", ""+client.getLocalPlayer().getCombatLevel())
+                .add("agility", ""+client.getRealSkillLevel(Skill.AGILITY))
+                .add("attack", ""+client.getRealSkillLevel(Skill.ATTACK))
+                .add("construction", ""+client.getRealSkillLevel(Skill.CONSTRUCTION))
+                .add("cooking", ""+client.getRealSkillLevel(Skill.COOKING))
+                .add("crafting", ""+client.getRealSkillLevel(Skill.CRAFTING))
+                .add("defence", ""+client.getRealSkillLevel(Skill.DEFENCE))
+                .add("farming", ""+client.getRealSkillLevel(Skill.FARMING))
+                .add("firemaking", ""+client.getRealSkillLevel(Skill.FIREMAKING))
+                .add("fishing", ""+client.getRealSkillLevel(Skill.FISHING))
+                .add("fletching", ""+client.getRealSkillLevel(Skill.FLETCHING))
+                .add("herblore", ""+client.getRealSkillLevel(Skill.HERBLORE))
+                .add("hitpoints", ""+client.getRealSkillLevel(Skill.HITPOINTS))
+                .add("hunter", ""+client.getRealSkillLevel(Skill.HUNTER))
+                .add("magic", ""+client.getRealSkillLevel(Skill.MAGIC))
+                .add("mining", ""+client.getRealSkillLevel(Skill.MINING))
+                .add("prayer", ""+client.getRealSkillLevel(Skill.PRAYER))
+                .add("ranged", ""+client.getRealSkillLevel(Skill.RANGED))
+                .add("runecraft", ""+client.getRealSkillLevel(Skill.RUNECRAFT))
+                .add("slayer", ""+client.getRealSkillLevel(Skill.SLAYER))
+                .add("smithing", ""+client.getRealSkillLevel(Skill.SMITHING))
+                .add("strenght", ""+client.getRealSkillLevel(Skill.STRENGTH))
+                .add("thieving", ""+client.getRealSkillLevel(Skill.THIEVING))
+                .add("woodcutting", ""+client.getRealSkillLevel(Skill.WOODCUTTING))
+                .add("overall", ""+client.getRealSkillLevel(Skill.OVERALL))
+                .build();
+
+        //API FILE TO LOAD
+        String file = "getSkillingInfo.php";
+
+        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
+        sendToApi(file, formBody);
     }
 
     //SEND API REQUEST (FILENAME AND VALUES NECESSARY)//
