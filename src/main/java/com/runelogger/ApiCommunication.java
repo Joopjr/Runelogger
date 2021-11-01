@@ -251,7 +251,7 @@ public class ApiCommunication
                 .add("strenght", ""+client.getRealSkillLevel(Skill.STRENGTH))
                 .add("thieving", ""+client.getRealSkillLevel(Skill.THIEVING))
                 .add("woodcutting", ""+client.getRealSkillLevel(Skill.WOODCUTTING))
-                .add("overall", ""+client.getRealSkillLevel(Skill.OVERALL))
+                .add("overall", ""+client.getTotalLevel())
                 .build();
 
         //API FILE TO LOAD
