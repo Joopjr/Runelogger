@@ -89,6 +89,9 @@ public class ApiCommunication
 
         //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
         sendToApi(file, formBody);
+
+        //SEND QUEST INFO
+        sendQuestInfo();
     }
 
     //SEND THE CHARACTER INFO TO THE API
@@ -176,8 +179,9 @@ public class ApiCommunication
         //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
         sendToApi(file, formBody);
 
-        //SEND LEVEL INFO
+        //SEND LEVEL AND QUEST INFO
         sendLevelInfo();
+        sendQuestInfo();
 
         return true;
     }
@@ -221,6 +225,24 @@ public class ApiCommunication
         //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
         sendToApi(file, formBody);
     }
+
+    //SEND THE CHARACTER LEVEL INFO TO THE API
+    private void sendQuestInfo()
+    {
+        //FORM PARAMETERS
+        RequestBody formBody = new FormBody.Builder()
+                .add("username", client.getUsername())
+                .add("questPoints", ""+client.getVar(VarPlayer.QUEST_POINTS))
+                .build();
+
+        //API FILE TO LOAD
+        String file = "getQuestInfo.php";
+
+        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
+        sendToApi(file, formBody);
+    }
+
+
 
     //SEND API REQUEST (FILENAME AND VALUES NECESSARY)//
     private void sendToApi(String file, RequestBody formBody)
