@@ -6,7 +6,7 @@ The soul purpose of the plugin is to collect your player data/activities and dis
 ## Character information
 The plugin will send your character information to our server, this data will be stored in our DataBase. These include (but are not limited to) your character name, character status (iron man, normal), membership days, levels, quest points and quests status. Your username (which most likely is your email address) is received hashed from the Runelite plugin, that way we don't store it as plain text but can still use this hash to transfer your data when your character name changes.
 
-###Activities
+### Activities
 Depending on your plugin settings we may receive the following data from your RuneScape activities:
 * Succesfully defeating bosses
 * Receiving new entries in your collection log.
