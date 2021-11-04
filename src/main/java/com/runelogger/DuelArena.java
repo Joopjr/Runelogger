@@ -6,8 +6,6 @@ import net.runelite.api.widgets.Widget;
 
 import javax.inject.Inject;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Slf4j
 public class DuelArena
