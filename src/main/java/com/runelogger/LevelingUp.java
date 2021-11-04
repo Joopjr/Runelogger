@@ -13,11 +13,9 @@ import javax.inject.Inject;
 @Slf4j
 public class LevelingUp
 {
-    @Inject
-    private Client client;
+    @Inject private Client client;
 
-    @Inject
-    private ApiCommunication apiCommunication;
+    @Inject private ApiCommunication apiCommunication;
 
     private String lastLevelUp;
     private Integer storedCombatLevel = 0;
@@ -57,8 +55,6 @@ public class LevelingUp
 
         //THERE IS NO COMBAT LEVEL STORED
         if(storedCombatLevel == 0 && client.getLocalPlayer().getCombatLevel() > 0)
-        {
             storedCombatLevel = client.getLocalPlayer().getCombatLevel();   //SET STORED COMBAT LEVEL TO CURRENT LEVEL
-        }
     }
 }

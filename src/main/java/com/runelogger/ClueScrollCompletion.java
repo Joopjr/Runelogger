@@ -9,8 +9,7 @@ import java.util.regex.Pattern;
 @Slf4j
 public class ClueScrollCompletion
 {
-    @Inject
-    private ApiCommunication apiCommunication;
+    @Inject private ApiCommunication apiCommunication;
 
     String completedClueScrollType = "";
 

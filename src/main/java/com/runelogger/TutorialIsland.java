@@ -9,11 +9,9 @@ import javax.inject.Inject;
 @Slf4j
 public class TutorialIsland
 {
-    @Inject
-    private Client client;
+    @Inject private Client client;
 
-    @Inject
-    private ApiCommunication apiCommunication;
+    @Inject private ApiCommunication apiCommunication;
 
     String lastDialogText = "";
 

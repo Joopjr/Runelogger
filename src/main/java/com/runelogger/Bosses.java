@@ -7,8 +7,7 @@ import java.util.regex.Pattern;
 
 public class Bosses
 {
-    @Inject
-    private ApiCommunication apiCommunication;
+    @Inject private ApiCommunication apiCommunication;
 
     public void chatBosses(String message)
     {
@@ -19,12 +18,8 @@ public class Bosses
         //GET MATCHES FOR ITEM
         if (BossesMatcher.find())
         {
-            //DONT PROCESS TEMPOROSS AS BOSS
-            if(!Objects.equals(BossesMatcher.group(1), "Tempoross"))
-            {
-                //COMMUNICATE ITEM//
-                apiCommunication.sendBosses(BossesMatcher.group(1));
-            }
+            //COMMUNICATIE BOSS (WHEN BOSS ISN'T TEMPOROSS)
+            if(!Objects.equals(BossesMatcher.group(1), "Tempoross")) apiCommunication.sendBosses(BossesMatcher.group(1));
         }
     }
 }

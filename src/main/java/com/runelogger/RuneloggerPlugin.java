@@ -23,41 +23,20 @@ import net.runelite.client.plugins.PluginDescriptor;
 
 public class RuneloggerPlugin extends Plugin
 {
-	@Inject
-	private Client client;
+	@Inject private Client client;
+	@Inject private RuneloggerConfig config;
 
-	@Inject
-	private RuneloggerConfig config;
+	@Inject private SkillingBosses skillingBosses;
+	@Inject private LevelingUp levelingUp;
+	@Inject private QuestCompletion questCompletion;
+	@Inject private MusicUnlock musicUnlock;
+	@Inject private TutorialIsland tutorialIsland;
+	@Inject private CollectionLog collectionLog;
+	@Inject private Bosses bosses;
+	@Inject private DuelArena duelArena;
+	@Inject private ClueScrollCompletion clueScrollCompletion;
 
-	@Inject
-	private SkillingBosses skillingBosses;
-
-	@Inject
-	private LevelingUp levelingUp;
-
-	@Inject
-	private QuestCompletion questCompletion;
-
-	@Inject
-	private MusicUnlock musicUnlock;
-
-	@Inject
-	private TutorialIsland tutorialIsland;
-
-	@Inject
-	private CollectionLog collectionLog;
-
-	@Inject
-	private Bosses bosses;
-
-	@Inject
-	private DuelArena duelArena;
-
-	@Inject
-	private ClueScrollCompletion clueScrollCompletion;
-
-	@Inject
-	private ApiCommunication apiCommunication;
+	@Inject private ApiCommunication apiCommunication;
 
 	private boolean characterInfoSend = false;
 
@@ -84,8 +63,6 @@ public class RuneloggerPlugin extends Plugin
 		"You feel something weird sneaking into your backpack");
 	 */
 
-
-
 	//EXECUTE EVERY GAME TICK//
 	@Subscribe
 	public void onGameTick(GameTick tick)
@@ -99,30 +76,11 @@ public class RuneloggerPlugin extends Plugin
 			characterInfoSend = apiCommunication.sendCharacterInfo();
 		}
 
-		//SKILLING BOSSES ARE ENABLED
-		if(config.skillingBosses()) {
-			skillingBosses.gametickSkillingBoss();
-		}
-
-		//LEVELING UP IS ENABLED
-		if(config.levelingUp()) {
-			levelingUp.gametickLevelingUp();
-		}
-
-		//QUEST COMPLETION IS ENABLED
-		if(config.questCompletion()) {
-			questCompletion.gametickQuestCompletion();
-		}
-
-		//TUTORIAL ISLAND IS ENABLED
-		if(config.tutorialIsland()) {
-			tutorialIsland.gametickTutorialIsland();
-		}
-
-		//DUEL ARENA IS ENABLED
-		if(config.duelArena()) {
-			duelArena.gametickDuelArena();
-		}
+		if(config.skillingBosses()) skillingBosses.gametickSkillingBoss();		//SKILLING BOSSES ARE ENABLED
+		if(config.levelingUp()) levelingUp.gametickLevelingUp();				//LEVELING UP IS ENABLED
+		if(config.questCompletion()) questCompletion.gametickQuestCompletion();	//QUEST COMPLETION IS ENABLED
+		if(config.tutorialIsland()) tutorialIsland.gametickTutorialIsland();	//TUTORIAL ISLAND IS ENABLED
+		if(config.duelArena()) duelArena.gametickDuelArena();					//DUEL ARENA IS ENABLED
 	}
 
 	@Subscribe
@@ -130,30 +88,11 @@ public class RuneloggerPlugin extends Plugin
 	{
         String message = chatMessage.getMessage();
 
-		//SKILLING BOSSES ARE ENABLED
-		if(config.skillingBosses()) {
-			skillingBosses.chatSkillingBoss(message);
-		}
-
-		//MUSIC UNLOCKS ARE ENABLED
-		if(config.musicUnlocks()) {
-			musicUnlock.chatMusicUnlock(message);
-		}
-
-		//COLLECTION LOG IS ENABLED
-		if(config.collectionLog()) {
-			collectionLog.chatCollectionLog(message);
-		}
-
-		//BOSS KILLS ARE ENABLED
-        if(config.bosses()) {
-            bosses.chatBosses(message);
-        }
-
-		//CLUE SCROLL COMPLETIONS ARE ENABLED
-        if(config.clueScrollCompletion()) {
-			clueScrollCompletion.chatClueScrollCompletion(message);
-        }
+		if(config.skillingBosses()) skillingBosses.chatSkillingBoss(message);						//SKILLING BOSSES ARE ENABLED
+		if(config.musicUnlocks()) musicUnlock.chatMusicUnlock(message);								//MUSIC UNLOCKS ARE ENABLED
+		if(config.collectionLog()) collectionLog.chatCollectionLog(message);						//COLLECTION LOG IS ENABLED
+        if(config.bosses()) bosses.chatBosses(message);												//BOSS KILLS ARE ENABLED
+        if(config.clueScrollCompletion()) clueScrollCompletion.chatClueScrollCompletion(message);	//CLUE SCROLL COMPLETIONS ARE ENABLED
 	}
 
 	@Provides

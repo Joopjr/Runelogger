@@ -14,11 +14,9 @@ import javax.inject.Inject;
 @Slf4j
 public class SkillingBosses
 {
-    @Inject
-    private Client client;
+    @Inject private Client client;
 
-    @Inject
-    private ApiCommunication apiCommunication;
+    @Inject private ApiCommunication apiCommunication;
 
     private String message;
 
@@ -30,7 +28,8 @@ public class SkillingBosses
     public void gametickSkillingBoss()
     {
         //PLAYER IS IN WINTERTODT REGION//
-        if(client.getLocalPlayer().getWorldLocation().getRegionID() == 6462) {
+        if(client.getLocalPlayer().getWorldLocation().getRegionID() == 6462)
+        {
             //GET WINTERTODT WIDGET
             Widget wintertodtScoreWidget = client.getWidget(396, 7);
 
@@ -42,17 +41,14 @@ public class SkillingBosses
 
                 //GET MATCHES FOR SCORE ON WINTERTODT WIDGET//
                 if (winterTodtscoreMatcher.find()) {
-                    //SCORE HAS GONE BACKWARDS (END OF ROUND?)//
-                    if(Integer.parseInt(winterTodtscoreMatcher.group(1)) > wintertodtScore) {
-                        wintertodtScore = Integer.parseInt(winterTodtscoreMatcher.group(1));
-                    }
+                    //SCORE INCREASED, SET NEW SCORE//
+                    if(Integer.parseInt(winterTodtscoreMatcher.group(1)) > wintertodtScore) wintertodtScore = Integer.parseInt(winterTodtscoreMatcher.group(1));
                 }
             }
         }
         //PLAYER NOT IN WINTERTODT BUT STILL HAS HIGH ENOUGH SCORE
-        else if(startCoutingWintertodtScore) {
+        else if(startCoutingWintertodtScore)
             stopCountingWintertodtScore();
-        }
 
         //GET TEMPOROSS WIDGET
         Widget temporossScoreWidget = client.getWidget(437, 25);
@@ -63,27 +59,22 @@ public class SkillingBosses
             Pattern temporossscorePatern = Pattern.compile("Points: (\\d+)");
             Matcher temporossscoreMatcher = temporossscorePatern.matcher(temporossScoreWidget.getText());
 
-            //GET MATCHES FOR SCORE ON WINTERTODT WIDGET//
+            //GET MATCHES FOR SCORE ON TEMPOROSS WIDGET//
             if (temporossscoreMatcher.find()) {
-                //SCORE HAS GONE BACKWARDS (END OF ROUND?)//
-                if(Integer.parseInt(temporossscoreMatcher.group(1)) > temporossScore) {
-                    temporossScore = Integer.parseInt(temporossscoreMatcher.group(1));
-log.info("Increased Tempoross score to: "+temporossScore);
-                }
+                //SCORE INCREASED, SET NEW SCORE//
+                if(Integer.parseInt(temporossscoreMatcher.group(1)) > temporossScore) temporossScore = Integer.parseInt(temporossscoreMatcher.group(1));
             }
         }
-        //PLAYER NOT IN WINTERTODT BUT STILL HAS HIGH ENOUGH SCORE
-        else if(startCoutingTemporossScore) {
+        //TEMPOROSS SCORE WIDGET NOT ACTIVE
+        else if(startCoutingTemporossScore)
             stopCountingTemporossScore();
-        }
     }
 
     public void chatSkillingBoss(String message)
     {
         //CHECK IF THE USE HAS ENOUGH POINTS TO EARN A SUPPLY CRATE
-        if(message.contains("You have helped enough to earn a supply crate.")) {
-            startCoutingWintertodtScore = true;
-        }
+        if(message.contains("You have helped enough to earn a supply crate.")) startCoutingWintertodtScore = true;
+
         //WINTERTODT SCORE IS COUNTING//
         if(startCoutingWintertodtScore)
         {
@@ -100,9 +91,8 @@ log.info("Increased Tempoross score to: "+temporossScore);
         }
 
         //CHECK IF THE USE HAS ENOUGH POINTS TO EARN A REWARD PERMIT
-        if(message.contains("You have earned enough points for a reward permit.")) {
-            startCoutingTemporossScore = true;
-        }
+        if(message.contains("You have earned enough points for a reward permit.")) startCoutingTemporossScore = true;
+
         //TEMPOROSS SCORE IS COUNTING//
         if(startCoutingTemporossScore)
         {

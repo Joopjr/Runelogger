@@ -6,8 +6,7 @@ import java.util.regex.Pattern;
 
 public class CollectionLog
 {
-    @Inject
-    private ApiCommunication apiCommunication;
+    @Inject private ApiCommunication apiCommunication;
 
     public void chatCollectionLog(String message)
     {
@@ -15,10 +14,7 @@ public class CollectionLog
         Pattern CollectionLogPatern = Pattern.compile("New item added to your collection log: <col=ff0000>(.*?)(</col>|$)");
         Matcher CollectionLogMatcher = CollectionLogPatern.matcher(message);
 
-        //GET MATCHES FOR ITEM
-        if (CollectionLogMatcher.find()) {
-            //COMMUNICATE ITEM//
-            apiCommunication.sendCollectionLog(CollectionLogMatcher.group(1));
-        }
+        // COMMUNICATE ITEM //
+        if (CollectionLogMatcher.find()) apiCommunication.sendCollectionLog(CollectionLogMatcher.group(1));
     }
 }
