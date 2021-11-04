@@ -78,16 +78,10 @@ public class RuneloggerPlugin extends Plugin
 
 	/*
 	ADD:
-	String CHEST_LOOTED_MESSAGE = "You find some treasure in the chest!";
-	BOSSKILL_MESSAGE_PATTERN = Pattern.compile("Your (.+) kill count is: <col=ff0000>(\\d+)</col>.");
 	VALUABLE_DROP_PATTERN = Pattern.compile(".*Valuable drop: ([^<>]+?\\(((?:\\d+,?)+) coins\\))(?:</col>)?");
 	UNTRADEABLE_DROP_PATTERN = Pattern.compile(".*Untradeable drop: ([^<>]+)(?:</col>)?");
-	DUEL_END_PATTERN = Pattern.compile("You have now (won|lost) ([0-9]+) duels?\\.");
 	PET_MESSAGES = ImmutableList.of("You have a funny feeling like you're being followed",
-		"You feel something weird sneaking into your backpack",
-		"You have a funny feeling like you would have been followed");
-
-
+		"You feel something weird sneaking into your backpack");
 	 */
 
 
@@ -115,17 +109,17 @@ public class RuneloggerPlugin extends Plugin
 			levelingUp.gametickLevelingUp();
 		}
 
-		//LEVELING UP IS ENABLED
+		//QUEST COMPLETION IS ENABLED
 		if(config.questCompletion()) {
 			questCompletion.gametickQuestCompletion();
 		}
 
-		//LEVELING UP IS ENABLED
+		//TUTORIAL ISLAND IS ENABLED
 		if(config.tutorialIsland()) {
 			tutorialIsland.gametickTutorialIsland();
 		}
 
-		//LEVELING UP IS ENABLED
+		//DUEL ARENA IS ENABLED
 		if(config.duelArena()) {
 			duelArena.gametickDuelArena();
 		}
@@ -136,22 +130,27 @@ public class RuneloggerPlugin extends Plugin
 	{
         String message = chatMessage.getMessage();
 
+		//SKILLING BOSSES ARE ENABLED
 		if(config.skillingBosses()) {
 			skillingBosses.chatSkillingBoss(message);
 		}
 
+		//MUSIC UNLOCKS ARE ENABLED
 		if(config.musicUnlocks()) {
 			musicUnlock.chatMusicUnlock(message);
 		}
 
+		//COLLECTION LOG IS ENABLED
 		if(config.collectionLog()) {
 			collectionLog.chatCollectionLog(message);
 		}
 
+		//BOSS KILLS ARE ENABLED
         if(config.bosses()) {
             bosses.chatBosses(message);
         }
 
+		//CLUE SCROLL COMPLETIONS ARE ENABLED
         if(config.clueScrollCompletion()) {
 			clueScrollCompletion.chatClueScrollCompletion(message);
         }
@@ -162,5 +161,4 @@ public class RuneloggerPlugin extends Plugin
 	{
 		return configManager.getConfig(RuneloggerConfig.class);
 	}
-
 }
