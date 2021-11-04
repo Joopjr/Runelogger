@@ -4,7 +4,7 @@ import javax.inject.Inject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CombatChallenges
+public class SoloCombatMinigame
 {
     @Inject private ApiCommunication apiCommunication;
 
@@ -35,7 +35,7 @@ public class CombatChallenges
                 String completedTzHaarChallengeTime = TzHaarChallengesTimeMatcher.group(1);
 
                 //COMMUNICATE CLUE SCROLL COMPLETION//
-                apiCommunication.sendCombatChallengeCompletedTime("TzHaar-Ket-Rak's", completedTzHaarChallengeType, completedTzHaarChallengeTime);
+                apiCommunication.sendMinigameTime("TzHaar-Ket-Rak's", completedTzHaarChallengeType, completedTzHaarChallengeTime);
 
                 //RESET COMPLETED CHALLENGE TYPE
                 completedTzHaarChallengeType = "";

@@ -55,12 +55,12 @@ public interface RuneloggerConfig extends Config
     }
     @ConfigItem(
             position = 12,
-            keyName = "combatChallenges",
-            name = "Combat challenges",
-            description = "Send combat challenges to Runelogger.",
+            keyName = "soloCombatMinigame",
+            name = "Solo combat minigames",
+            description = "Send solo combat minigames to Runelogger.",
             section = combat
     )
-    default boolean combatChallenges() {
+    default boolean soloCombatMinigame() {
         return true;
     }
     @ConfigItem(

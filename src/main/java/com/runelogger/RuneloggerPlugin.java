@@ -35,7 +35,7 @@ public class RuneloggerPlugin extends Plugin
 	@Inject private Bosses bosses;
 	@Inject private DuelArena duelArena;
 	@Inject private ClueScrollCompletion clueScrollCompletion;
-	@Inject private CombatChallenges combatChallenges;
+	@Inject private SoloCombatMinigame soloCombatMinigame;
 
 	@Inject private ApiCommunication apiCommunication;
 
@@ -94,7 +94,7 @@ public class RuneloggerPlugin extends Plugin
 		if(config.collectionLog()) collectionLog.chatCollectionLog(message);						//COLLECTION LOG IS ENABLED
         if(config.bosses()) bosses.chatBosses(message);												//BOSS KILLS ARE ENABLED
 		if(config.clueScrollCompletion()) clueScrollCompletion.chatClueScrollCompletion(message);	//CLUE SCROLL COMPLETIONS ARE ENABLED
-		if(config.combatChallenges()) combatChallenges.chatCombatChallenges(message);				//COMBAT CHALLENGES ARE ENABLED
+		if(config.soloCombatMinigame()) soloCombatMinigame.chatCombatChallenges(message);				//COMBAT CHALLENGES ARE ENABLED
 	}
 
 	@Provides

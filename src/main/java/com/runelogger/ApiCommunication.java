@@ -185,17 +185,17 @@ public class ApiCommunication
     }
 
     //SEND THE CHARACTER LEVEL INFO TO THE API
-    public void sendCombatChallengeCompletedTime(String challenge, String type, String time)
+    public void sendMinigameTime(String minigame, String type, String time)
     {
         //FORM PARAMETERS
         RequestBody formBody = new FormBody.Builder()
                 .add("username", getUsernameHash())
-                .add("challenge", challenge)
+                .add("minigame", minigame)
                 .add("type", type)
                 .add("time", time)
                 .build();
 
-        String file = "processCombatChallenge.php";   //API FILE TO LOAD
+        String file = "processMinigameTime.php";   //API FILE TO LOAD
         sendToApi(file, formBody);          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
 
