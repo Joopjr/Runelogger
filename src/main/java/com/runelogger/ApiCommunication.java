@@ -213,7 +213,6 @@ public class ApiCommunication
         String file = "getCharacterInfo.php";   //API FILE TO LOAD
         sendToApi(file, formBody);              //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
 
-        //SEND LEVEL AND QUEST INFO
         sendLevelInfo();
         sendQuestInfo();
 
@@ -293,6 +292,7 @@ public class ApiCommunication
             @Override
             public void onResponse(Call call, Response response)
             {
+                log.debug("Succesfully send request to api "+file);
                 response.close();
             }
         });
