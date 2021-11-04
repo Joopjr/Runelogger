@@ -10,7 +10,7 @@ public class SoloCombatMinigame
 
     private String completedTzHaarChallengeType = "";
 
-    public void chatCombatChallenges(String message)
+    public void chatSoloCombatMinigame(String message)
     {
         //TzHaar-Ket-Rak's Challenges == UNTESTED BUT SHOULD WORK //
 
@@ -35,7 +35,7 @@ public class SoloCombatMinigame
                 String completedTzHaarChallengeTime = TzHaarChallengesTimeMatcher.group(1);
 
                 //COMMUNICATE CLUE SCROLL COMPLETION//
-                apiCommunication.sendMinigameTime("TzHaar-Ket-Rak's", completedTzHaarChallengeType, completedTzHaarChallengeTime);
+                apiCommunication.sendMinigameTime("TzHaar-Ket-Rak's Challenge", completedTzHaarChallengeType, completedTzHaarChallengeTime);
 
                 //RESET COMPLETED CHALLENGE TYPE
                 completedTzHaarChallengeType = "";
