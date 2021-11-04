@@ -59,6 +59,16 @@ public interface RuneloggerConfig extends Config
 
     @ConfigItem(
             position = 6,
+            keyName = "clueScrollCompletion",
+            name = "Clue Scroll Completions",
+            description = "Share completing clue scrolls."
+    )
+    default boolean clueScrollCompletion() {
+        return true;
+    }
+
+    @ConfigItem(
+            position = 7,
             keyName = "duelArena",
             name = "Duel Arena",
             description = "Share result from your duels in the Duel Arena."
@@ -68,7 +78,7 @@ public interface RuneloggerConfig extends Config
     }
 
     @ConfigItem(
-            position = 7,
+            position = 8,
             keyName = "musicUnlocks",
             name = "Music Unlocks",
             description = "Share unlocking new music tracks."
@@ -78,7 +88,7 @@ public interface RuneloggerConfig extends Config
     }
 
     @ConfigItem(
-            position = 8,
+            position = 9,
             keyName = "tutorialIsland",
             name = "Tutorial Island",
             description = "Share finishing Tutorial Island."

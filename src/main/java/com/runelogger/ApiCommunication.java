@@ -198,6 +198,23 @@ public class ApiCommunication
     }
 
     //SEND THE CHARACTER INFO TO THE API
+    public void sendClueScrollCompletion(String type, String reward)
+    {
+        //FORM PARAMETERS
+        RequestBody formBody = new FormBody.Builder()
+                .add("username", getUsernameHash())
+                .add("type", type)
+                .add("reward", reward)
+                .build();
+
+        //API FILE TO LOAD
+        String file = "processClueScrollCompletion.php";
+
+        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
+        sendToApi(file, formBody);
+    }
+
+    //SEND THE CHARACTER INFO TO THE API
     public boolean sendCharacterInfo()
     {
         //FORM PARAMETERS

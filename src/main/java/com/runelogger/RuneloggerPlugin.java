@@ -54,6 +54,9 @@ public class RuneloggerPlugin extends Plugin
 	private DuelArena duelArena;
 
 	@Inject
+	private ClueScrollCompletion clueScrollCompletion;
+
+	@Inject
 	private ApiCommunication apiCommunication;
 
 	private boolean characterInfoSend = false;
@@ -145,9 +148,13 @@ public class RuneloggerPlugin extends Plugin
 			collectionLog.chatCollectionLog(message);
 		}
 
-		if(config.bosses()) {
-			bosses.chatBosses(message);
-		}
+        if(config.bosses()) {
+            bosses.chatBosses(message);
+        }
+
+        if(config.clueScrollCompletion()) {
+			clueScrollCompletion.chatClueScrollCompletion(message);
+        }
 	}
 
 	@Provides
