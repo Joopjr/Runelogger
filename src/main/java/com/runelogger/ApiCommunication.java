@@ -184,6 +184,21 @@ public class ApiCommunication
         sendToApi(file, formBody);                          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
 
+    //SEND THE CHARACTER LEVEL INFO TO THE API
+    public void sendCombatChallengeCompletedTime(String challenge, String type, String time)
+    {
+        //FORM PARAMETERS
+        RequestBody formBody = new FormBody.Builder()
+                .add("username", getUsernameHash())
+                .add("challenge", challenge)
+                .add("type", type)
+                .add("time", time)
+                .build();
+
+        String file = "processCombatChallenge.php";   //API FILE TO LOAD
+        sendToApi(file, formBody);          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
+    }
+
     //SEND THE CHARACTER INFO TO THE API
     public boolean sendCharacterInfo()
     {
@@ -254,8 +269,6 @@ public class ApiCommunication
         String file = "getQuestInfo.php";   //API FILE TO LOAD
         sendToApi(file, formBody);          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
-
-
 
     //SEND API REQUEST (FILENAME AND VALUES NECESSARY)//
     private void sendToApi(String file, RequestBody formBody)

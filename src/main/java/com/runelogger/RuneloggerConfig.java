@@ -55,6 +55,16 @@ public interface RuneloggerConfig extends Config
     }
     @ConfigItem(
             position = 12,
+            keyName = "combatChallenges",
+            name = "Combat challenges",
+            description = "Send combat challenges to Runelogger.",
+            section = combat
+    )
+    default boolean combatChallenges() {
+        return true;
+    }
+    @ConfigItem(
+            position = 13,
             keyName = "duelArena",
             name = "Duel arena results",
             description = "Send results from your duels in the Duel Arena to Runelogger.",
