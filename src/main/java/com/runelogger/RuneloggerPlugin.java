@@ -17,7 +17,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 @Slf4j
 @PluginDescriptor(
 	name = "Runelogger",
-	description = "Log your RuneScape journey.",
+	description = "Publishes your RuneScape adventures on Runelogger.com.",
 	tags = {"runelogger", "journey"}
 )
 
