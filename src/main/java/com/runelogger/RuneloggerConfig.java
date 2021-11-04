@@ -3,97 +3,128 @@ package com.runelogger;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.ConfigSection;
 
 @ConfigGroup("runelogger")
 public interface RuneloggerConfig extends Config
 {
+    @ConfigSection(
+            name = "Skilling",
+            description = "Choose the skilling activities to send to Runelogger.",
+            position = 0,
+            closedByDefault = false
+    )
+    String skilling = "skilling";
     @ConfigItem(
             position = 1,
             keyName = "levelingUp",
-            name = "Level up",
-            description = "Share reached new skill (and combat) levels."
+            name = "Leveling up skills",
+            description = "Send reaching new skill (and combat) levels to Runelogger.",
+            section = skilling
     )
     default boolean levelingUp() {
         return true;
     }
-
     @ConfigItem(
             position = 2,
-            keyName = "questCompletion",
-            name = "Quest Completion",
-            description = "Share your quest completions."
-    )
-    default boolean questCompletion() {
-        return true;
-    }
-
-    @ConfigItem(
-            position = 3,
-            keyName = "bosses",
-            name = "Bosses",
-            description = "Share defeating bosses."
-    )
-    default boolean bosses() {
-        return true;
-    }
-
-    @ConfigItem(
-            position = 4,
             keyName = "skillingBosses",
-            name = "Skilling Bosses",
-            description = "Share defeating skilling bosses."
+            name = "Defeating skilling bosses",
+            description = "Send defeating skilling bosses and your score to Runelogger.",
+            section = skilling
     )
     default boolean skillingBosses() {
         return true;
     }
 
-    @ConfigItem(
-            position = 5,
-            keyName = "collectionLog",
-            name = "Collection Log",
-            description = "Share new additions to your collection log."
+    @ConfigSection(
+            name = "Combat",
+            description = "Choose the combat activities to send to Runelogger.",
+            position = 10,
+            closedByDefault = false
     )
-    default boolean collectionLog() {
+    String combat = "combat";
+    @ConfigItem(
+            position = 11,
+            keyName = "bosses",
+            name = "Killing bosses",
+            description = "Send defeating bosses to Runelogger.",
+            section = combat
+    )
+    default boolean bosses() {
         return true;
     }
-
     @ConfigItem(
-            position = 6,
-            keyName = "clueScrollCompletion",
-            name = "Clue Scroll Completions",
-            description = "Share completing clue scrolls."
-    )
-    default boolean clueScrollCompletion() {
-        return true;
-    }
-
-    @ConfigItem(
-            position = 7,
+            position = 12,
             keyName = "duelArena",
-            name = "Duel Arena",
-            description = "Share result from your duels in the Duel Arena."
+            name = "Duel arena results",
+            description = "Send results from your duels in the Duel Arena to Runelogger.",
+            section = combat
     )
     default boolean duelArena() {
         return false;
     }
 
+    @ConfigSection(
+            name = "Story / Lore",
+            description = "Choose the story activities to send to Runelogger.",
+            position = 20,
+            closedByDefault = false
+    )
+    String stories = "stories";
     @ConfigItem(
-            position = 8,
+            position = 21,
+            keyName = "questCompletion",
+            name = "Quest completions",
+            description = "Send your quest completions to Runelogger.",
+            section = stories
+    )
+    default boolean questCompletion() { return true; }
+
+    @ConfigSection(
+            name = "Item unlocks/rewards",
+            description = "Choose the item unlocks/rewards to send to Runelogger.",
+            position = 30,
+            closedByDefault = false
+    )
+    String items = "items";
+    @ConfigItem(
+            position = 31,
+            keyName = "clueScrollCompletion",
+            name = "Clue scroll completions",
+            description = "Send completing clue scrolls to Runelogger.",
+            section = items
+    )
+    default boolean clueScrollCompletion() { return true; }
+    @ConfigItem(
+            position = 32,
+            keyName = "collectionLog",
+            name = "Collection log entries",
+            description = "Send new additions to your collection log to Runelogger.",
+            section = items
+    )
+    default boolean collectionLog() { return true; }
+
+    @ConfigSection(
+            name = "Other",
+            description = "Choose other smaller activities/unlocks to send to Runelogger.",
+            position = 40,
+            closedByDefault = true
+    )
+    String others = "others";
+    @ConfigItem(
+            position = 41,
             keyName = "musicUnlocks",
             name = "Music Unlocks",
-            description = "Share unlocking new music tracks."
+            description = "Send unlocking new music tracks to Runelogger.",
+            section = others
     )
-    default boolean musicUnlocks() {
-        return false;
-    }
-
+    default boolean musicUnlocks() { return false; }
     @ConfigItem(
-            position = 9,
+            position = 42,
             keyName = "tutorialIsland",
             name = "Tutorial Island",
-            description = "Share finishing Tutorial Island."
+            description = "Send finishing Tutorial Island to Runelogger.",
+            section = others
     )
-    default boolean tutorialIsland() {
-        return true;
-    }
+    default boolean tutorialIsland() { return false; }
 }
