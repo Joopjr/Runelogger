@@ -19,7 +19,7 @@ public class Bosses
         //GET MATCHES FOR ITEM
         if (BossesMatcher.find())
         {
-            //DONT PROCESS TEMPOROSS ASS BOSS
+            //DONT PROCESS TEMPOROSS AS BOSS
             if(!Objects.equals(BossesMatcher.group(1), "Tempoross"))
             {
                 //COMMUNICATE ITEM//
