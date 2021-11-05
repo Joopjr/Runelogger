@@ -19,15 +19,19 @@ public class LevelingUp
 
     private String lastLevelUp;
     private Integer storedCombatLevel = 0;
+    private String levelUpWidgetText = "";
 
     public void gametickLevelingUp()
     {
-        //PLAYER LEVELED
+        //LEVEL UP WIDGET PRESENT
         if (client.getWidget(WidgetInfo.LEVEL_UP_LEVEL) != null)
-        {
-            //GET WIDGET
-            String levelUpWidgetText = client.getWidget(WidgetInfo.LEVEL_UP_LEVEL).getText();
+            levelUpWidgetText = client.getWidget(WidgetInfo.LEVEL_UP_LEVEL).getText();  //EXTRACT TEXT FROM WIDGET
+        else if(client.getWidget(WidgetInfo.DIALOG_SPRITE_TEXT) != null)
+            levelUpWidgetText = client.getWidget(WidgetInfo.DIALOG_SPRITE_TEXT).getText();  //EXTRACT TEXT FROM WIDGET
 
+        //THERE IS A LEVEL UP TEXT
+        if(levelUpWidgetText != "")
+        {
             //EXTRACT THE SKILL AND LEVEL
             Pattern levelingUpPatern = Pattern.compile(".*Your ([a-zA-Z]+) (?:level is|are)? now (\\d+)\\.");  //FROM SCREENSHOT PLUGIN
             Matcher levelingUpMatcher = levelingUpPatern.matcher(levelUpWidgetText);
@@ -51,6 +55,8 @@ public class LevelingUp
                 apiCommunication.sendLevelingUpInfo("Combat", client.getLocalPlayer().getCombatLevel());
                 storedCombatLevel = client.getLocalPlayer().getCombatLevel();   //SET STORED COMBAT LEVEL TO CURRENT LEVEL
             }
+
+            levelUpWidgetText = ""; //RESET LEVEL UP WIDGET TEXT
         }
 
         //THERE IS NO COMBAT LEVEL STORED
