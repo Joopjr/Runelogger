@@ -8,13 +8,25 @@ The plugin will send your character information to our server, this data will be
 
 ### Activities
 Depending on your plugin settings we may receive the following data from your RuneScape activities:
-* Succesfully defeating bosses
-* Receiving new entries in your collection log.
-* Your fight results from the Duel Arena.
+
+#### Skilling
 * Reaching new skill levels
-* Unlocking new music tracks
-* Quest Completions
 * Defeating (skilling) bosses and the amount of points earned
+
+#### Combat
+* Succesfully defeating bosses
+* Solo combat minigames (currently only TzHaar-Ket-Rak's Challenge)
+* Your fight results from the Duel Arena.
+
+#### Story / Lore
+* Quest Completions
+
+#### Item unlocks/rewards
+* Clue scroll completions
+* Receiving new entries in your collection log.
+
+#### Other
+* Unlocking new music tracks
 
 ## Ip Address
 Due to the way the internet is build we also receive your Ip Address when the plugin is sending data to our server. This Ip address is only stored in our server access logs (which are pruned automatically) and not in our DataBase.
