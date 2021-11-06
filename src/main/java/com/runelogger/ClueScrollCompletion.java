@@ -22,7 +22,7 @@ public class ClueScrollCompletion
         //GET MATCHES FOR ITEM
         if (ClueScrollCompletionMatcher.find())
         {
-log.info("Clue scroll completed!");
+log.debug("Clue scroll completed!");
             //SET COMPLETED CLUE SCROLL TYPE TO CURRENT
             completedClueScrollType = ClueScrollCompletionMatcher.group(2);
         }
@@ -30,7 +30,7 @@ log.info("Clue scroll completed!");
         //CLUE SCROLL IS COMPLETED
         if(completedClueScrollType != "")
         {
-log.info("Clue scroll completed, check for reward!");
+log.debug("Clue scroll completed, check for reward!");
             //EXTRACT CLUE SCROLL REWARD AMOUNT MESSAGE
             Pattern ClueScrollRewardPatern = Pattern.compile("<col=ef1020>Your treasure is worth about ([\\d,]+) coins!</col>");   //FROM SCREENSHOT API
             Matcher ClueScrollRewardMatcher = ClueScrollRewardPatern.matcher(message);
@@ -38,7 +38,7 @@ log.info("Clue scroll completed, check for reward!");
             //GET MATCHES FOR REWARD
             if (ClueScrollRewardMatcher.find())
             {
-log.info("Clue scroll reward known!");
+log.debug("Clue scroll reward known!");
                 //SET COMPLETED CLUE SCROLL REWARD TO CURRENT
                 String completedClueScrollReward = ClueScrollRewardMatcher.group(1);
 
@@ -47,7 +47,7 @@ log.info("Clue scroll reward known!");
 
                 //RESET COMPLETED CLUE SCROLL TYPE
                 completedClueScrollType = "";
-log.info("Reset clue scroll completion!");
+log.debug("Reset clue scroll completion!");
             }
         }
     }
