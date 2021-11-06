@@ -12,11 +12,9 @@ import java.util.regex.Pattern;
 @Slf4j
 public class QuestCompletion
 {
-    @Inject
-    private Client client;
+    @Inject private Client client;
 
-    @Inject
-    private ApiCommunication apiCommunication;
+    @Inject private ApiCommunication apiCommunication;
 
     String lastQuestCompleted;
 

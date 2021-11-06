@@ -17,11 +17,8 @@ import javax.inject.Inject;
 @Slf4j
 public class ApiCommunication
 {
-    @Inject
-    private Client client;
-
-    @Inject
-    private OkHttpClient CurrentOkHttpClient;
+    @Inject private Client client;
+    @Inject private OkHttpClient CurrentOkHttpClient;
 
     //HASH THE USERNAME BEFORE SENDING IT SO WE DONT NEED TO STORE EMAIL ADDRESSES//
     private String getUsernameHash()
@@ -64,11 +61,8 @@ public class ApiCommunication
                 .add("status", status)
                 .build();
 
-        //API FILE TO LOAD
-        String file = "processTutorialIsland.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "processTutorialIsland.php";  //API FILE TO LOAD
+        sendToApi(file, formBody);                  //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
 
         return true;
     }
@@ -83,11 +77,8 @@ public class ApiCommunication
                 .add("level", ""+level)
                 .build();
 
-        //API FILE TO LOAD
-        String file = "processLevelUp.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "processLevelUp.php"; //API FILE TO LOAD
+        sendToApi(file, formBody);          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
 
         //SEND LEVEL INFO
         sendLevelInfo();
@@ -103,11 +94,8 @@ public class ApiCommunication
                 .add("score", ""+score)
                 .build();
 
-        //API FILE TO LOAD
-        String file = "processSkillingBoss.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "processSkillingBoss.php";    //API FILE TO LOAD
+        sendToApi(file, formBody);                  //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
 
     //SEND THE CHARACTER INFO TO THE API
@@ -119,11 +107,8 @@ public class ApiCommunication
                 .add("quest", quest)
                 .build();
 
-        //API FILE TO LOAD
-        String file = "processQuestCompletion.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "processQuestCompletion.php"; //API FILE TO LOAD
+        sendToApi(file, formBody);                  //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
 
         //SEND QUEST INFO
         sendQuestInfo();
@@ -138,11 +123,8 @@ public class ApiCommunication
                 .add("boss", boss)
                 .build();
 
-        //API FILE TO LOAD
-        String file = "processBosses.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "processBosses.php";  //API FILE TO LOAD
+        sendToApi(file, formBody);          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
 
     //SEND THE CHARACTER INFO TO THE API
@@ -154,11 +136,8 @@ public class ApiCommunication
                 .add("item", item)
                 .build();
 
-        //API FILE TO LOAD
-        String file = "processCollectionLog.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "processCollectionLog.php";   //API FILE TO LOAD
+        sendToApi(file, formBody);                  //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
 
     //SEND THE CHARACTER INFO TO THE API
@@ -174,11 +153,8 @@ public class ApiCommunication
                 .add("winnings", winnings)
                 .build();
 
-        //API FILE TO LOAD
-        String file = "processDuelArena.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "processDuelArena.php";   //API FILE TO LOAD
+        sendToApi(file, formBody);              //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
 
     //SEND THE CHARACTER INFO TO THE API
@@ -190,11 +166,37 @@ public class ApiCommunication
                 .add("track", track)
                 .build();
 
-        //API FILE TO LOAD
-        String file = "processMusicUnlock.php";
+        String file = "processMusicUnlock.php"; //API FILE TO LOAD
+        sendToApi(file, formBody);              //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
+    }
 
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+    //SEND THE CHARACTER INFO TO THE API
+    public void sendClueScrollCompletion(String type, String reward)
+    {
+        //FORM PARAMETERS
+        RequestBody formBody = new FormBody.Builder()
+                .add("username", getUsernameHash())
+                .add("type", type)
+                .add("reward", reward)
+                .build();
+
+        String file = "processClueScrollCompletion.php";    //API FILE TO LOAD
+        sendToApi(file, formBody);                          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
+    }
+
+    //SEND THE CHARACTER LEVEL INFO TO THE API
+    public void sendMinigameTime(String minigame, String type, String time)
+    {
+        //FORM PARAMETERS
+        RequestBody formBody = new FormBody.Builder()
+                .add("username", getUsernameHash())
+                .add("minigame", minigame)
+                .add("type", type)
+                .add("time", time)
+                .build();
+
+        String file = "processMinigameTime.php";   //API FILE TO LOAD
+        sendToApi(file, formBody);          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
 
     //SEND THE CHARACTER INFO TO THE API
@@ -208,13 +210,9 @@ public class ApiCommunication
                 .add("memberDays", ""+client.getVar(VarPlayer.MEMBERSHIP_DAYS))
                 .build();
 
-        //API FILE TO LOAD
-        String file = "getCharacterInfo.php";
+        String file = "getCharacterInfo.php";   //API FILE TO LOAD
+        sendToApi(file, formBody);              //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
 
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
-
-        //SEND LEVEL AND QUEST INFO
         sendLevelInfo();
         sendQuestInfo();
 
@@ -254,11 +252,8 @@ public class ApiCommunication
                 .add("overall", ""+client.getTotalLevel())
                 .build();
 
-        //API FILE TO LOAD
-        String file = "getSkillingInfo.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "getSkillingInfo.php";    //API FILE TO LOAD
+        sendToApi(file, formBody);              //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
 
     //SEND THE CHARACTER LEVEL INFO TO THE API
@@ -270,14 +265,9 @@ public class ApiCommunication
                 .add("questPoints", ""+client.getVar(VarPlayer.QUEST_POINTS))
                 .build();
 
-        //API FILE TO LOAD
-        String file = "getQuestInfo.php";
-
-        //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
-        sendToApi(file, formBody);
+        String file = "getQuestInfo.php";   //API FILE TO LOAD
+        sendToApi(file, formBody);          //SEND THE NEEDED FILENAME AND VALUES TO THE API REQUEST
     }
-
-
 
     //SEND API REQUEST (FILENAME AND VALUES NECESSARY)//
     private void sendToApi(String file, RequestBody formBody)
@@ -302,6 +292,7 @@ public class ApiCommunication
             @Override
             public void onResponse(Call call, Response response)
             {
+                log.debug("Succesfully send request to api "+file);
                 response.close();
             }
         });

@@ -6,17 +6,13 @@ import net.runelite.api.widgets.Widget;
 
 import javax.inject.Inject;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Slf4j
 public class DuelArena
 {
-    @Inject
-    private Client client;
+    @Inject private Client client;
 
-    @Inject
-    private ApiCommunication apiCommunication;
+    @Inject private ApiCommunication apiCommunication;
 
     boolean duelArenaWidgetOpen = false;
 
@@ -38,18 +34,13 @@ public class DuelArena
 
             String winningValue = client.getWidget(372, 40).getText();
 
+            //CURRENT PLAYER IS WINNER
             if(Objects.equals(winnerName, client.getLocalPlayer().getName()))
-            {
                 apiCommunication.sendDuelArena("won", winnerCombat, loserName, loserCombat, winningValue);
-            }
             else
-            {
                 apiCommunication.sendDuelArena("lost", loserCombat, winningValue, winnerCombat, loserName);
-            }
         }
         else if (duelArenaWidget == null && duelArenaWidgetOpen)
-        {
             duelArenaWidgetOpen = false;
-        }
     }
 }
